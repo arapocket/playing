@@ -1,23 +1,24 @@
 import { useEffect, useRef, memo } from "react"
+import { useTime } from "./useTime";
 
 export const Child = memo(() => {
 
     const childRenderRef =  useRef(0);
 
+    const time = useTime();
+
     const styles = {
         container: {
             backgroundColor: "#FFF787",
-            padding: "10px",
             display: "flex",
             flex: 1,
             border: "solid 10px",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "space-around",
+            flexDirection: "column"
 
         },
         textBox: {
-            width: "100px",
-            height: "100px",
             backgroundColor: "blue",
             color: "white",
             display: "flex",
@@ -39,7 +40,8 @@ export const Child = memo(() => {
 
     return (
         <div style={styles.container}>
-            <div className ="text-box">Renders: {childRenderRef.current++}</div>
+            <div className ="text-box">Child Renders: {childRenderRef.current++}</div>
+            <div className ="text-box">{time.toString()}</div>
         </div>
     )
     

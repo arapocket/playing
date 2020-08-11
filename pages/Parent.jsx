@@ -4,7 +4,6 @@ import {Child} from "./Child";
 
 export const Parent = () => {
   const [num, setNum] = useState(0);
-  const [numJaj, setNumJaj] = useState(0);
 
   const parentRenderRef = useRef(0);
 
