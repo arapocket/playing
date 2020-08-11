@@ -9,6 +9,7 @@ export const Parent = (props) => {
   const [num, setNum] = useState(0);
   const [names, setNames] = useState(["A"])
   const [numJaj, setNumJaj] = useState(0);
+
   const parentRenderRef = useRef(0);
   parentRenderRef.current = 1
   const handleClick = useCallback(() => {
