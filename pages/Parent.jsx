@@ -1,11 +1,15 @@
 import React, { useState, useRef, useCallback, useEffect, useMemo, TouchableOpacity } from "react";
 import Head from 'next/head'
 import { Child } from "./Child";
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const Parent = (props) => {
-  console.log(props)
+  const test = useSelector(state => state)
+  console.log(test)
+  const dist = useDispatch()
+
   const [num, setNum] = useState(0);
   const [names, setNames] = useState(["A"])
   const [numJaj, setNumJaj] = useState(0);
@@ -14,7 +18,6 @@ export const Parent = (props) => {
   parentRenderRef.current = 1
   const handleClick = useCallback(() => {
     setNum(num + 1);
-    console.log(num)
     setNames([...names, num + 1])
   }, [num, names]);
   const childFunction = () => {
@@ -31,9 +34,9 @@ export const Parent = (props) => {
     setNames([...names.slice(1)])
   }
   const renderPeople = useMemo(() => {
-    return names.map((x, i) => <button key={i + 1} onClick={removeItem}>{x}</button>
+    return test.todos.map((x, i) => <button key={i + 1} onClick={removeItem}>{x}</button>
     )
-  }, [names])
+  }, [test.todos])
 
   return (
 
@@ -41,7 +44,7 @@ export const Parent = (props) => {
     <div className="container">
       <div className="text-box">Renders: {parentRenderRef.current++}</div>
       <div className="text-box">Button Clicks: {num}</div>
-      <button onClick={handleClick}>Suck Me</button>
+      <button onClick={() => dist({ type: "ADD_TODO", payload: "hi" })}>Suck Me</button>
       {
         renderPeople
       }
@@ -208,10 +211,3 @@ export const Parent = (props) => {
     </div>
   );
 };
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    todos: state
-  }
-}
-export default connect(mapStateToProps)(Parent);
