@@ -1,8 +1,8 @@
 import { useEffect, useRef, memo } from "react"
 
-export const Child = memo(() => {
+export const Child = memo(({ parentVal }) => {
 
-    const childRenderRef =  useRef(0);
+    const childRenderRef = useRef(0);
 
     const styles = {
         container: {
@@ -25,12 +25,12 @@ export const Child = memo(() => {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: "10px",
-          }
+        }
     }
-
-    useEffect(()=> {
+    // functionFromParent()
+    useEffect(() => {
         console.log("child rendered");
-
+        console.log(parentVal)
         return () => {
             console.log("child unmounted");
         }
@@ -39,8 +39,8 @@ export const Child = memo(() => {
 
     return (
         <div style={styles.container}>
-            <div className ="text-box">Renders: {childRenderRef.current++}</div>
+            <div className="text-box">Renders: {childRenderRef.current++}</div>
         </div>
     )
-    
+
 });

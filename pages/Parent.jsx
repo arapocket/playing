@@ -1,36 +1,50 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback, useEffect, useMemo, TouchableOpacity } from "react";
 import Head from 'next/head'
-import {Child} from "./Child";
+import { Child } from "./Child";
+import { Provider } from 'react-redux'
+import { connect } from 'react-redux'
 
-export const Parent = () => {
+export const Parent = (props) => {
+  console.log(props)
   const [num, setNum] = useState(0);
+  const [names, setNames] = useState(["A"])
   const [numJaj, setNumJaj] = useState(0);
-
   const parentRenderRef = useRef(0);
-
+  parentRenderRef.current = 1
   const handleClick = useCallback(() => {
     setNum(num + 1);
-  }, [num, setNum]);
-
+    console.log(num)
+    setNames([...names, num + 1])
+  }, [num, names]);
+  const childFunction = () => {
+    console.log("function from parent")
+  }
   useEffect(() => {
     console.log("useEffect in parent called");
+    console.log(num)
     return () => {
       console.log("parent unmounted");
     };
   }, [num]);
+  const removeItem = (e) => {
+    setNames([...names.slice(1)])
+  }
+  const renderPeople = useMemo(() => {
+    return names.map((x, i) => <button key={i + 1} onClick={removeItem}>{x}</button>
+    )
+  }, [names])
 
   return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
+
+    <div className="container">
       <div className="text-box">Renders: {parentRenderRef.current++}</div>
       <div className="text-box">Button Clicks: {num}</div>
       <button onClick={handleClick}>Suck Me</button>
-
-      <Child></Child>
+      {
+        renderPeople
+      }
+      <Child parentVal={num}></Child>
 
       <style jsx>{`
         .text-box {
@@ -193,3 +207,10 @@ export const Parent = () => {
     </div>
   );
 };
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    todos: state
+  }
+}
+export default connect(mapStateToProps)(Parent);
