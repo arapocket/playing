@@ -1,4 +1,3 @@
-
 //
 // useTime hook
 //

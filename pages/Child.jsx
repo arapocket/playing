@@ -7,6 +7,8 @@ export const Child = memo(({ parentVal }) => {
 
     const time = useTime();
 
+    const time = useTime();
+
     const styles = {
         container: {
             backgroundColor: "#FFF787",
@@ -41,11 +43,16 @@ export const Child = memo(({ parentVal }) => {
     return (
         <div style={styles.container}>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div className="text-box">Renders: {childRenderRef.current++}</div>
 =======
             <div className ="text-box">Child Renders: {childRenderRef.current++}</div>
             <div className ="text-box">{time.toString()}</div>
 >>>>>>> 1a080a9a08a0b957cf5253c7b9a304b0a79e4e6a
+=======
+            <div className ="text-box">Child Renders: {childRenderRef.current++}</div>
+            <div className ="text-box">{time.toString()}</div>
+>>>>>>> badf4d58053e6e3d78d7b7972ebda3397a5f784c
         </div>
     )
 
