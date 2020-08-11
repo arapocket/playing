@@ -7,11 +7,8 @@ import { connect } from 'react-redux'
 export const Parent = (props) => {
   console.log(props)
   const [num, setNum] = useState(0);
-<<<<<<< HEAD
   const [names, setNames] = useState(["A"])
   const [numJaj, setNumJaj] = useState(0);
-=======
->>>>>>> badf4d58053e6e3d78d7b7972ebda3397a5f784c
 
   const parentRenderRef = useRef(0);
   parentRenderRef.current = 1
