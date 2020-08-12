@@ -7,8 +7,11 @@ import { useSelector } from 'react-redux'
 
 export const Parent = (props) => {
   const test = useSelector(state => state)
-  console.log(test)
   const dist = useDispatch()
+
+  const numbers = useSelector(state => state)
+  console.log(numbers)
+
 
   const [num, setNum] = useState(0);
   const [names, setNames] = useState(["A"])
@@ -45,6 +48,8 @@ export const Parent = (props) => {
       <div className="text-box">Renders: {parentRenderRef.current++}</div>
       <div className="text-box">Button Clicks: {num}</div>
       <button onClick={() => dist({ type: "ADD_TODO", payload: "hi" })}>Suck Me</button>
+      <button onClick={() => dist({ type: "ADD_NAME", payload: "ARA" })}>Add Names</button>
+      <button onClick={() => dist({ type: "numbers/addNumber", payload: 10 })}>Add numbers</button>
       {
         renderPeople
       }

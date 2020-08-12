@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "luxon": "^1.24.1",
     "next": "9.5.1",
     "react": "16.13.1",

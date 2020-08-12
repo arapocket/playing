@@ -1,8 +1,11 @@
 import { useEffect, useRef, memo } from "react"
 import { useTime } from "./useTime";
+import { useSelector } from 'react-redux'
 
 export const Child = memo(({ parentVal }) => {
 
+    const listOfNames = useSelector(state => state.names);
+    console.log(listOfNames)
     const childRenderRef = useRef(0);
 
     const time = useTime();
